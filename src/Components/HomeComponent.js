@@ -13,6 +13,11 @@ export default function HomeComponent() {
   const [Type, setType] = useState();
 
   useEffect(() => {
+    window.addEventListener("resize", handleresize);
+    return () => window.removeEventListener("resize", handleresize);
+  }, []);
+
+  useEffect(() => {
     if (files) {
       showImg();
     }
@@ -25,6 +30,21 @@ export default function HomeComponent() {
     }
   }, [Type]);
 
+  const handleresize = () => {
+    if (window.innerWidth <= 600) {
+      if (
+        document.getElementById("canvas") &&
+        document.getElementById("canvas").style.width
+      )
+        document.getElementById("canvas").style.width = "300px";
+    } else {
+      if (
+        document.getElementById("canvas") &&
+        document.getElementById("canvas").style.width
+      )
+        document.getElementById("canvas").style.width = "500px";
+    }
+  };
   const getImage = async (file) => {
     setfiles(file);
   };
@@ -39,7 +59,11 @@ export default function HomeComponent() {
         canvas.height = img.height;
         const ctx = canvas.getContext("2d");
         ctx.drawImage(img, 0, 0, img.width, img.height);
-        canvas.style.width = "500px";
+        if (document.documentElement.clientWidth <= 500) {
+          canvas.style.width = "300px";
+        } else {
+          canvas.style.width = "500px";
+        }
         document.getElementById("bg_image").style.display = "none";
         document.getElementById("options").style.display = "flex";
         canvas.style.height = "auto";
@@ -60,7 +84,11 @@ export default function HomeComponent() {
         canvas.height = img.height;
         const ctx = canvas.getContext("2d");
         ctx.drawImage(img, 0, 0, img.width, img.height);
-        canvas.style.width = "500px";
+        if (document.documentElement.clientWidth <= 500) {
+          canvas.style.width = "300px";
+        } else {
+          canvas.style.width = "500px";
+        }
         document.getElementById("bg_image").style.display = "none";
         document.getElementById("options").style.display = "flex";
         canvas.style.height = "auto";
@@ -260,16 +288,7 @@ export default function HomeComponent() {
               <p id="showdownload" className={styles.downloadshow}>
                 <img src="./Images/downloader.svg" />
               </p>
-              <canvas
-                id="canvas"
-                style={{
-                  width: "0px",
-                  height: "0px",
-                  maxHeight: "340px",
-                  objectFit: "contain",
-                  borderRadius: "5px",
-                }}
-              ></canvas>
+              <canvas id="canvas"></canvas>
             </div>
           </div>
         </div>

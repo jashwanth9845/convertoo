@@ -104,3 +104,31 @@
   box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
     rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 }
+canvas {
+  width: 0px;
+  height: 0px;
+  max-height: 340px;
+  object-fit: contain;
+  border-radius: 5px;
+}
+@media only screen and (max-width: 500px) {
+  .Mainaction {
+    flex-direction: column-reverse;
+  }
+  .Mainaction {
+    margin: 15px 20px;
+  }
+  canvas {
+    width: 100%;
+  }
+  .headingDiv > h3 {
+    color: #343b48;
+    font-size: 3em;
+    margin: 0;
+    text-align: center;
+    width: 90%;
+  }
+  .bg_image > img {
+    max-height: 300px;
+  }
+}
