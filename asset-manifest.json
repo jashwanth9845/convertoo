@@ -1,11 +1,11 @@
 {
   "files": {
     "main.css": "/convertoo/static/css/main.6d0dc7ac.css",
-    "main.js": "/convertoo/static/js/main.2f3f40b9.js",
+    "main.js": "/convertoo/static/js/main.c0aff507.js",
     "index.html": "/convertoo/index.html"
   },
   "entrypoints": [
     "static/css/main.6d0dc7ac.css",
-    "static/js/main.2f3f40b9.js"
+    "static/js/main.c0aff507.js"
   ]
 }
