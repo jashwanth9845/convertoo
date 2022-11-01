@@ -146,7 +146,7 @@ export default function HomeComponent() {
         canvas.height = img.height;
         const ctx = canvas.getContext("2d");
         ctx.drawImage(img, 0, 0, img.width, img.height);
-        canvas.style.width = "500px";
+        // canvas.style.width = "500px";
         document.getElementById("bg_image").style.display = "none";
         document.getElementById("options").style.display = "flex";
         canvas.style.height = "auto";
