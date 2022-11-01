@@ -1,0 +1,29 @@
+.maincontainer {
+  display: flex;
+  flex-wrap: wrap;
+  width: -webkit-fill-available;
+  height: fit-content;
+  padding: 5px;
+  /* background-color: #4747bf; */
+  background-color: white;
+  box-shadow: rgb(0 0 0 / 5%) 0px 1px 5px 0px;
+}
+.leftDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5px;
+  padding: 5px;
+}
+.leftDiv > p {
+  margin: 0px 5px;
+  font-size: 40px;
+  font-weight: bold;
+  color: #3754bbf0;
+  letter-spacing: 1px;
+}
+.leftDiv > img {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+}

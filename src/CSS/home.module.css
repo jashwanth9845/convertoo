@@ -1,0 +1,94 @@
+.mainContainer {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+}
+.InnerDiv {
+  margin: 0px;
+  width: fit-content;
+  height: fit-content;
+  margin: auto;
+  flex-wrap: nowrap;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 2em;
+  align-items: center;
+  font-size: 1.2em;
+  box-shadow: rgb(0 0 0 / 15%) 0px 5px 15px 0px;
+}
+.headingDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2% 0;
+}
+.headingDiv > h3 {
+  text-align: center;
+  font-size: 4em;
+  width: 60%;
+  margin: 0px;
+  color: #343b48;
+}
+.dropText {
+  color: #343b48;
+  font-size: 1.2em;
+  margin: 3% 0;
+}
+.Mainaction {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-items: center;
+  width: -webkit-fill-available;
+  margin: 10px;
+}
+.action {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.bg_image {
+  display: flex;
+  width: 100%;
+}
+.bg_image > img {
+  width: 90%;
+  height: auto;
+  object-fit: contain;
+}
+.dropdownOptions {
+  display: none;
+  gap: 1em;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  width: 100%;
+  margin: 10px 0px;
+}
+.dropdownOptions > div {
+  display: flex;
+  flex-direction: row;
+  background-color: #3754bbf0;
+  padding: 0px;
+  border-radius: 5px;
+}
+
+.dropdownOptions > div > p {
+  margin: 0px;
+  padding: 10px;
+  border-right: 1px solid rgb(113, 135, 245);
+  cursor: pointer;
+}
+.dropdownOptions > div > p:last-child {
+  border-right: none;
+}
+.dropdownOptions > div > p:hover {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
+    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+}
