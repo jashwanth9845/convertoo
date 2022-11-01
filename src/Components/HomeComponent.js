@@ -265,7 +265,7 @@ export default function HomeComponent() {
                 style={{
                   width: "0px",
                   height: "0px",
-                  maxHeight: "400px",
+                  maxHeight: "340px",
                   objectFit: "contain",
                   borderRadius: "5px",
                 }}
