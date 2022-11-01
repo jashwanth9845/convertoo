@@ -5,7 +5,7 @@ export default function HeaderComponent() {
     <div className={styles.maincontainer}>
       <div className={styles.innercontainer}>
         <div className={styles.leftDiv}>
-          <img src="/images/Convertoo_logo.svg" />
+          <img src="./Images/Convertoo_logo.svg" />
           <p>ConverToo</p>
         </div>
         <div className={styles.rightDiv}></div>

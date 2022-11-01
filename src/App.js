@@ -3,7 +3,9 @@ import MainComponent from "./Components/MainComponent";
 import "./index.css";
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter
+      basename={process.env.NODE_ENV == "production" ? "/convertoo" : ""}
+    >
       <MainComponent />
     </BrowserRouter>
   );

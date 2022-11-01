@@ -1,25 +1,5 @@
 export const Uploader = (req) => {
   const { accept, dropper, color, bgColor, multiple, getImage, text } = req;
-  //   const
-  const uploaderMainDiv = {
-    display: "flex",
-    width: "100%",
-    height: "fit-content",
-    flexWrap: "nowrap",
-  };
-
-  const uploaderInnerDiv = {
-    display: "flex",
-    width: "100%",
-    height: "100%",
-    justifyContent: "flex-start",
-    alienItems: "center",
-    boxShadow: "rgb(0 0 0 / 15%) 0px 5px 15px 0px",
-    borderRadius: "10px",
-    padding: "15px",
-    margin: "10px",
-  };
-
   const uploaderLabel = {
     display: "flex",
     flexDirection: "column",
@@ -124,7 +104,21 @@ export const Uploader = (req) => {
           borderBottomRightRadius: "5px",
         }}
       >
-        <label htmlFor="convertInput" id="imageInput">
+        <label
+          htmlFor="convertInput"
+          id="imageInput"
+          onMouseEnter={(e) => {
+            e.target.style.boxShadow = `${
+              color ? color + "40" : "rgba(50, 50, 93, 0.25)"
+            } 0px 30px 60px -12px inset,
+            ${
+              color ? color + "40" : "rgba(0, 0, 0, 0.3)"
+            } 0px 18px 36px -18px inset`;
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.boxShadow = `none`;
+          }}
+        >
           <input
             id="convertInput"
             type="file"

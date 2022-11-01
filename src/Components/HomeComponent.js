@@ -21,6 +21,7 @@ export default function HomeComponent() {
   useEffect(() => {
     if (Type) {
       convertTo();
+      document.getElementById("showdownload").style.display = "flex";
     }
   }, [Type]);
 
@@ -170,6 +171,8 @@ export default function HomeComponent() {
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
+    document.getElementById("showdownload").style.display = "none";
+    setType("");
   };
   const allowDrop = (ev) => {
     ev.preventDefault();
@@ -227,12 +230,12 @@ export default function HomeComponent() {
                 dropper={true}
                 text={"Upload Image"}
                 getImage={getImage}
-                // color={colourNameToHex("orange")}
-                // bgColor={colourNameToHex("red")}
+                // color={colourNameToHex("red")}
+                // bgColor={colourNameToHex("orange")}
               />
               <div className={styles.dropText}>or drop a file</div>
               <div className={styles.dropdownOptions} id="options">
-                <p>Convert To</p>
+                <p style={{ margin: "0px" }}>Convertion Types</p>
                 <div>
                   {options.map((e, i) => {
                     return (
@@ -251,18 +254,23 @@ export default function HomeComponent() {
               </div>
             </div>
             <div className={styles.bg_image} id="bg_image">
-              <img src="/images/drop_bg.png" />
+              <img src="./Images/drop_bg.png" />
             </div>
-            <canvas
-              id="canvas"
-              style={{
-                width: "0px",
-                height: "0px",
-                maxHeight: "400px",
-                objectFit: "contain",
-                borderRadius: "5px",
-              }}
-            ></canvas>
+            <div style={{ position: "relative" }}>
+              <p id="showdownload" className={styles.downloadshow}>
+                <img src="./Images/downloader.svg" />
+              </p>
+              <canvas
+                id="canvas"
+                style={{
+                  width: "0px",
+                  height: "0px",
+                  maxHeight: "400px",
+                  objectFit: "contain",
+                  borderRadius: "5px",
+                }}
+              ></canvas>
+            </div>
           </div>
         </div>
       </div>
