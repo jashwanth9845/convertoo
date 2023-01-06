@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/static/css/main.b39aa8d0.css",
-    "main.js": "/static/js/main.3a053087.js",
-    "index.html": "/index.html"
+    "main.css": "/convertoo/static/css/main.b39aa8d0.css",
+    "main.js": "/convertoo/static/js/main.3a053087.js",
+    "index.html": "/convertoo/index.html"
   },
   "entrypoints": [
     "static/css/main.b39aa8d0.css",
