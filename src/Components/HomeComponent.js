@@ -236,6 +236,7 @@ export default function HomeComponent() {
           color: "#0b2043",
           justifyContent: "center",
           alignItems: "center",
+          zIndex: 9999,
         }}
       >
         {`{ drop here }`}
