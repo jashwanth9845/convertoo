@@ -15,6 +15,7 @@ export const Uploader = (req) => {
     padding: "15px 10px",
     fontSize: "1.2em",
     borderRadius: "4px",
+    whiteSpace:"nowrap",
     cursor: "Pointer",
   };
   const uploaderButtonImg = {

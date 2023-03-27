@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { colourNameToHex } from "../Helper/colorConversion";
+import { memo, useMemo, useRef, useState ,useCallback,useEffect} from 'react';
 import { Uploader } from "../Helper/Uploader";
 import styles from "../CSS/home.module.css";
 const options = [
@@ -13,8 +12,8 @@ export default function HomeComponent() {
   const [Type, setType] = useState();
 
   useEffect(() => {
-    window.addEventListener("resize", handleresize);
-    return () => window.removeEventListener("resize", handleresize);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   useEffect(() => {
@@ -26,155 +25,150 @@ export default function HomeComponent() {
   useEffect(() => {
     if (Type) {
       convertTo();
-      document.getElementById("showdownload").style.display = "flex";
     }
   }, [Type]);
 
-  const handleresize = () => {
-    if (window.innerWidth <= 600) {
-      if (
-        document.getElementById("canvas") &&
-        document.getElementById("canvas").style.width
-      )
-        document.getElementById("canvas").style.width = "300px";
-    } else {
-      if (
-        document.getElementById("canvas") &&
-        document.getElementById("canvas").style.width
-      )
-        document.getElementById("canvas").style.width = "500px";
+  const handleResize = useCallback(() => {
+    const canvas = document.querySelector("canvas");
+    if (window.innerWidth <= 600 && canvas) {
+      canvas.style.width = "300px";
+    } else if(canvas) {
+      canvas.style.width = "100%";
     }
-  };
+  }, []);
+
   const getImage = async (file) => {
     setfiles(file);
+    document.getElementById("showLoading").style.display = "flex";
   };
-  const showImg = () => {
+  const showImg = async () => {
+    const canvasList = [];
+  
     if (typeof files === "string") {
-      let img = document.createElement("img");
+      const img = new Image();
       img.crossOrigin = "anonymous";
       img.src = files;
-      img.onload = function () {
-        const canvas = document.getElementById("canvas");
-        canvas.width = img.width;
-        canvas.height = img.height;
-        const ctx = canvas.getContext("2d");
-        ctx.drawImage(img, 0, 0, img.width, img.height);
-        if (document.documentElement.clientWidth <= 500) {
-          canvas.style.width = "300px";
-        } else {
-          canvas.style.width = "500px";
-        }
-        document.getElementById("bg_image").style.display = "none";
-        document.getElementById("options").style.display = "flex";
-        canvas.style.height = "auto";
-      };
+  
+      await new Promise((resolve, reject) => {
+        img.onload = () => {
+          const canvas = document.createElement("canvas");
+          canvas.width = img.width;
+          canvas.height = img.height;
+          const ctx = canvas.getContext("2d");
+          ctx.drawImage(img, 0, 0, img.width, img.height);
+          if (document.documentElement.clientWidth <= 500) {
+            canvas.style.width = "300px";
+          } else {
+            canvas.style.width = "400px";
+          }
+          canvasList.push(canvas);
+          resolve();
+        };
+  
+        img.onerror = reject;
+      });
     } else {
-      const blobURL = URL.createObjectURL(files[0]);
-      const img = new Image();
-      img.src = blobURL;
-
-      img.onerror = function () {
-        URL.revokeObjectURL(this.src);
-        console.log("Cannot load image");
-      };
-
-      img.onload = function () {
-        const canvas = document.getElementById("canvas");
-        canvas.width = img.width;
-        canvas.height = img.height;
-        const ctx = canvas.getContext("2d");
-        ctx.drawImage(img, 0, 0, img.width, img.height);
-        if (document.documentElement.clientWidth <= 500) {
-          canvas.style.width = "300px";
-        } else {
-          canvas.style.width = "500px";
-        }
-        document.getElementById("bg_image").style.display = "none";
-        document.getElementById("options").style.display = "flex";
-        canvas.style.height = "auto";
-      };
+      const promises = Array.from(files).map((file,i) => {
+        return new Promise((resolve, reject) => {
+          const img = new Image();
+          img.src = URL.createObjectURL(file);
+  
+          img.onload = () => {
+            const canvas = document.createElement("canvas");
+            canvas.width = img.width;
+            canvas.height = img.height;
+            const ctx = canvas.getContext("2d");
+            ctx.drawImage(img, 0, 0, img.width, img.height);
+            canvas.style.fontFamily = 'image'+i;
+            if (document.documentElement.clientWidth <= 500) {
+              canvas.style.width = "300px";
+              
+            } else {
+              canvas.style.width = "100%";
+            }
+            canvasList.push(canvas);
+            resolve();
+          };
+  
+          img.onerror = () => {
+            URL.revokeObjectURL(img.src);
+            console.log("Cannot load image");
+            resolve();
+          };
+        });
+      });
+  
+      await Promise.all(promises);
     }
+  
+    const canvasContainer = document.getElementById("canvasContainer");
+    canvasContainer.style.minHeight = "360px";
+    canvasContainer.innerHTML = '';
+    document.querySelector("#headingText > h3").style.fontSize = "2rem";
+  
+    canvasList.forEach((canvas) => {
+      const div = document.createElement("div");
+      div.style.position = "relative";
+      div.classList.add("canvasDiv");
+      div.style.transition = "all 0.3s ease";
+      div.style.display = "flex";
+      div.style.maxHeight = "360px";
+      div.style.justifyContent = "center";
+      canvas.style.height = "auto";
+      div.appendChild(canvas);
+    
+      const showDownload = document.createElement("p");
+      showDownload.id = canvas.style.fontFamily; 
+      showDownload.classList.add(styles.downloadshow);
+      const img = document.createElement("img");
+      img.src = "./Images/downloader.svg";
+      showDownload.appendChild(img);
+      div.appendChild(showDownload);
+    
+      canvasContainer.appendChild(div);
+    });
+    
+    
+    document.getElementById("bg_image").style.display = "none";
+    document.getElementById("options").style.display = "flex";
+    document.getElementById("showSlider").style.display = "block";
+    document.getElementById("showLoading").style.display = "none";
+
   };
+  
   const convertTo = () => {
-    if (typeof files == "string") {
-      let img = document.createElement("img");
+    for (let i = 0; i < files.length; i++) {
+      document.getElementById("image"+i).style.display = "flex";
+      const file = files[i];
+      const name = file.name;
+      const mime_type = `image/${Type}`;
+      const quality = qualityRate(file.size);
+  
+      const img = new Image();
       img.crossOrigin = "anonymous";
-      img.src = files;
       img.onload = function () {
-        URL.revokeObjectURL(this.src);
-        const mime_type = `image/${Type}`;
-        const quality = qualityRate(files.size);
-        const canvas = document.getElementById("canvas");
+        const canvas = document.createElement("canvas");
+        const ctx = canvas.getContext("2d");
         canvas.width = img.width;
         canvas.height = img.height;
-        const ctx = canvas.getContext("2d");
         ctx.drawImage(img, 0, 0, img.width, img.height);
-        canvas.toBlob(
-          (blob) => {
-            let localfile = new File(
-              [blob],
-              `ConvertedImage.${Type}`,
-              { type: `image/${Type}`, lastModified: new Date().getTime() },
-              "utf-8"
-            );
-            let container = new DataTransfer();
-            container.items.add(localfile);
-            [...container.files].forEach((e) => {
-              download(URL.createObjectURL(e), e.name);
-            });
-          },
-          mime_type,
-          quality
-        );
+        const dataURL = canvas.toDataURL(mime_type, quality);
+        const link = document.createElement("a");
+        link.href = dataURL;
+        link.download = `ConverToo_${name.replace("."+Type,'')}.${Type}`;
+        link.click();
+        document.getElementById("image"+i).style.display = "none";
+        setType("");
       };
-    } else {
-      const blobURL = URL.createObjectURL(files[0]);
-      const img = new Image();
-      img.src = blobURL;
-
       img.onerror = function () {
-        URL.revokeObjectURL(this.src);
         console.log("Cannot load image");
       };
-
-      img.onload = function () {
-        URL.revokeObjectURL(this.src);
-        const mime_type = `image/${Type}`;
-        const quality = qualityRate(files[0].size);
-        const canvas = document.getElementById("canvas");
-        canvas.width = img.width;
-        canvas.height = img.height;
-        const ctx = canvas.getContext("2d");
-        ctx.drawImage(img, 0, 0, img.width, img.height);
-        // canvas.style.width = "500px";
-        document.getElementById("bg_image").style.display = "none";
-        document.getElementById("options").style.display = "flex";
-        canvas.style.height = "auto";
-        canvas.toBlob(
-          (blob) => {
-            let localfile = new File(
-              [blob],
-              files[0].name.split(
-                "." +
-                  files[0].name.split(".")[files[0].name.split(".").length - 1]
-              )[0] +
-                "." +
-                Type,
-              { type: `image/${Type}`, lastModified: new Date().getTime() },
-              "utf-8"
-            );
-            let container = new DataTransfer();
-            container.items.add(localfile);
-            [...container.files].forEach((e) => {
-              download(URL.createObjectURL(e), e.name);
-            });
-          },
-          mime_type,
-          quality
-        );
-      };
+      const blobURL = URL.createObjectURL(file);
+      img.src = blobURL;
     }
   };
+  
+  
   const qualityRate = (fileSize) => {
     let QUALITY = 0.5;
 
@@ -192,16 +186,6 @@ export default function HomeComponent() {
     return QUALITY;
   };
 
-  const download = (url, name) => {
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = name;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    document.getElementById("showdownload").style.display = "none";
-    setType("");
-  };
   const allowDrop = (ev) => {
     ev.preventDefault();
     document.getElementById("showdraging").style.display = "flex";
@@ -209,6 +193,7 @@ export default function HomeComponent() {
   const drop = (ev) => {
     ev.preventDefault();
     var data = ev.dataTransfer.files;
+    document.getElementById("showLoading").style.display = "flex";
     setfiles(data);
   };
   return (
@@ -247,10 +232,13 @@ export default function HomeComponent() {
           allowDrop(e);
         }}
       >
-        <div className={styles.headingDiv}>
+        <div className={styles.headingDiv} id="headingText">
           <h3>Upload an image for Type conversion</h3>
         </div>
-        <div className={styles.InnerDiv}>
+        <div className={styles.InnerDiv} style={{position:"relative"}}>
+        <p id="showLoading"  className={styles.showLoading}>
+                  <img src="./Images/loader.svg" />
+                </p>
           <div className={styles.Mainaction}>
             <div className={styles.action}>
               <Uploader
@@ -282,14 +270,16 @@ export default function HomeComponent() {
                 </div>
               </div>
             </div>
-            <div className={styles.bg_image} id="bg_image">
-              <img src="./Images/drop_bg.png" />
-            </div>
-            <div style={{ position: "relative" }}>
-              <p id="showdownload" className={styles.downloadshow}>
-                <img src="./Images/downloader.svg" />
-              </p>
-              <canvas id="canvas"></canvas>
+              <div className={styles.viewSlider} id="showSlider">
+                <Slider fileSize={files}/>
+              </div>
+            <div style={{position:"relative"}}>
+              <div className={styles.bg_image} id="bg_image">
+                <img src="./Images/drop_bg.png" />
+              </div>
+              <div className={styles.canvasContainer} id="canvasContainer">
+              
+              </div>
             </div>
           </div>
         </div>
@@ -297,3 +287,54 @@ export default function HomeComponent() {
     </>
   );
 }
+
+
+
+export const Slider = memo(({fileSize}) => {
+  const valueDisplay = useRef();
+  const myRange = useRef();
+  const rangeValue = fileSize? fileSize.length : 20 ;
+  const [defaultValue, setDefaultValue] = useState(null);
+
+  const handleViewBy = (e) => {
+    const value = e.target.value;
+    const min = e.target.min;
+    const max = e.target.max;
+    valueDisplay.current.innerHTML = `view By: ${value}`;
+    const
+			newValue = Number( (value - min) * 80 / (max - min) ),
+      newPosition = 10 - (newValue * 0.2);
+    valueDisplay.current.style.left = `calc(${newValue}% + (${newPosition}px))`;
+    const elements = document.querySelectorAll('.canvasDiv');
+    if (elements.length) {
+      elements.forEach((elem) => {
+        const calval = `calc(100% / ${value} - 40px)`;
+        elem.style.width = calval;
+        elem.style.height = 'auto';
+        elem.style.margin = '0 20px';
+        elem.style.flexBasis = calval;
+      });
+    }
+    setDefaultValue(value);
+  };
+
+  const memoizedDefaultValue = useMemo(() => defaultValue ?? 'auto', [defaultValue]);
+
+  return (
+    <div className={styles.sliderContainer}>
+      <label className={styles.rangerLabel} ref={valueDisplay}>
+        view By: {memoizedDefaultValue}
+      </label>
+      <input
+        className={styles.ranger}
+        type="range"
+        min={1}
+        max={rangeValue}
+        ref={myRange}
+        value={defaultValue ?? 0}
+        onChange={handleViewBy}
+      />
+    </div>
+  );
+});
+

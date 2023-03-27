@@ -4,6 +4,8 @@
   flex-direction: column;
   /* justify-content: center; */
   align-items: center;
+  transition:all 0.3s cubic-bezier(0.31, -0.03, 0.89, 1.3);
+
 }
 .InnerDiv {
   margin: 0px;
@@ -18,13 +20,18 @@
   gap: 2em;
   align-items: center;
   font-size: 1.2em;
+  margin: 0 4rem;
   box-shadow: rgb(0 0 0 / 15%) 0px 5px 15px 0px;
+  transition:all 0.3s cubic-bezier(0.31, -0.03, 0.89, 1.3);
+
 }
 .headingDiv {
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 2% 0;
+  transition:all 0.3s cubic-bezier(0.31, -0.03, 0.89, 1.3);
+
 }
 .headingDiv > h3 {
   text-align: center;
@@ -32,11 +39,15 @@
   width: 60%;
   margin: 0px;
   color: #343b48;
+  transition:all 0.3s cubic-bezier(0.31, -0.03, 0.89, 1.3);
+
 }
 .dropText {
   color: #343b48;
   font-size: 1.2em;
   margin: 3% 0;
+  transition:all 0.3s cubic-bezier(0.31, -0.03, 0.89, 1.3);
+
 }
 .Mainaction {
   display: flex;
@@ -45,22 +56,31 @@
   align-items: center;
   width: -webkit-fill-available;
   margin: 10px;
+  transition:all 0.3s cubic-bezier(0.31, -0.03, 0.89, 1.3);
+
 }
 .action {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
+  width: max-content;
+  margin: 0 1rem;
+  transition:all 0.3s cubic-bezier(0.31, -0.03, 0.89, 1.3);
+
 }
 .bg_image {
   display: flex;
   width: 100%;
+  transition:all 0.3s cubic-bezier(0.31, -0.03, 0.89, 1.3);
+
 }
 .bg_image > img {
   width: 90%;
   height: auto;
   object-fit: contain;
   max-height: 350px;
+  transition:all 0.3s cubic-bezier(0.31, -0.03, 0.89, 1.3);
+
 }
 .dropdownOptions {
   display: none;
@@ -71,17 +91,48 @@
   flex-wrap: nowrap;
   width: 100%;
   margin: 15px 0px;
+  transition:all 0.3s cubic-bezier(0.31, -0.03, 0.89, 1.3);
+
 }
-.downloadshow {
-  margin: 0px;
-  position: absolute;
+.showLoading{
+  position: fixed;
   display: none;
   justify-content: center;
   align-items: center;
-  width: 98%;
-  height: 98%;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
   border-radius: 5px;
-  background: #4645454d;
+  z-index: 999;
+  background:rgb(255 255 255 / 38%);
+  transition: all 0.3s cubic-bezier(0.31, -0.03, 0.89, 1.3);
+}
+.downloadshow {
+  position: absolute;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    width: max-content;
+    height: max-content;
+    top: 0;
+    margin: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-radius: 5px;
+  transition:all 0.3s cubic-bezier(0.31, -0.03, 0.89, 1.3);
+
+}
+.downloadshow > img {
+  position: relative;
+  margin: auto;
+  display: flex;
+  width: inherit;
+  height: inherit;
+  object-fit: contain;
+  justify-content: center;
+  align-items: center;
 }
 .dropdownOptions > div {
   display: flex;
@@ -89,6 +140,8 @@
   background-color: #3754bbf0;
   padding: 0px;
   border-radius: 5px;
+  transition:all 0.3s cubic-bezier(0.31, -0.03, 0.89, 1.3);
+
 }
 
 .dropdownOptions > div > p {
@@ -96,9 +149,13 @@
   padding: 10px;
   border-right: 1px solid rgb(113, 135, 245);
   cursor: pointer;
+  transition:all 0.3s cubic-bezier(0.31, -0.03, 0.89, 1.3);
+
 }
 .dropdownOptions > div > p:last-child {
   border-right: none;
+  transition:all 0.3s cubic-bezier(0.31, -0.03, 0.89, 1.3);
+
 }
 .dropdownOptions > div > p:hover {
   box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
@@ -110,7 +167,95 @@ canvas {
   max-height: 340px;
   object-fit: contain;
   border-radius: 5px;
+  border:  1px solid rgb(113, 135, 245);
+  padding: 5px;
+  margin: 5px;
+  transition:all 0.3s ease-in-out;
+
 }
+.canvasContainer{
+  position: relative;
+  max-height: 360px;
+  overflow-y: auto;
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+  flex-wrap: wrap;
+  transition:all 0.3s ease-in-out;
+
+}
+
+.viewSlider{
+  display: none;
+position: absolute;
+top: 20px;
+left: 10px;
+width: 80%;
+transition:all 0.3s cubic-bezier(0.31, -0.03, 0.89, 1.3);
+
+}
+.sliderContainer{
+  position: relative;
+  display: flex;
+  width: inherit;
+  justify-content: flex-start;
+  align-items: center;
+  transition:all 0.3s cubic-bezier(0.31, -0.03, 0.89, 1.3);
+
+}
+
+
+
+.ranger {
+  width: 80%;
+  height: 5px;
+  border-radius: 5px;
+  background-color: rgb(113, 135, 245);
+  appearance: none;
+  -webkit-appearance: none;
+  outline: none;
+  position: relative;
+  z-index: 1;
+  transition:all 0.3s cubic-bezier(0.31, -0.03, 0.89, 1.3);
+}
+
+.ranger::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: rgb(113, 135, 245);
+  border:3px solid lightgray;
+  position: relative;
+  top: 0;
+  z-index: 2;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.31, -0.03, 0.89, 1.3);
+
+}
+.ranger::-webkit-slider-thumb:hover{
+    border:4px solid lightgray;
+    transition:all 0.3s cubic-bezier(0.31, -0.03, 0.89, 1.3);
+
+}
+.rangerLabel {
+  position: absolute;
+  top: -45px;
+  left: 0;
+  font-size: 20px;
+  font-family: inherit;
+  background-color: white;
+  padding: 5px;
+  border-radius: 5px;
+  box-shadow: 0px 2px 5px rgba(0,0,0,0.3);
+  font-weight: bold;
+  text-align: center;
+  z-index: 2;
+  transition:all 0.3s cubic-bezier(0.31, -0.03, 0.89, 1.3);
+
+}
+
+
 @media only screen and (max-width: 500px) {
   .Mainaction {
     flex-direction: column-reverse;
