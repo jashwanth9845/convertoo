@@ -1,13 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin: auto; background: transparent; display: block;" width="200px" height="200px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
-<g transform="translate(50 50) scale(0.8)">
-  <g>
-    <animateTransform attributeName="transform" type="scale" repeatCount="indefinite" calcMode="spline" dur="1.1627906976744187s" values="0.8;0.5;0.8" keyTimes="0;0.5;1" keySplines="0.5 0 0.5 1;0.5 0 0.5 1"></animateTransform>
-    <rect x="-45" y="-45" width="90" height="90" fill="#7187f5" stroke="#c4ceff" stroke-width="7" stroke-linejoin="round" rx="1" ry="1">
-      <animate attributeName="rx" repeatCount="indefinite" dur="1.1627906976744187s" values="0;50;0" keyTimes="0;0.5;1"></animate>
-      <animate attributeName="ry" repeatCount="indefinite" dur="1.1627906976744187s" values="0;50;0" keyTimes="0;0.5;1"></animate>
-      <animate attributeName="stroke-width" repeatCount="indefinite" dur="1.1627906976744187s" values="7;11.200000000000001;7" keyTimes="0;0.5;1"></animate>
-      <animateTransform attributeName="transform" type="rotate" repeatCount="indefinite" dur="1.1627906976744187s" values="0 0 0;270 0 0;540 0 0" keyTimes="0;0.5;1" calcMode="spline" keySplines="0.5 0 0.5 1;0.5 0 0.5 1"></animateTransform>
-    </rect>
-  </g>
-</g>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin: auto; background: transparent; display: block;" width="209px" height="209px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
+<g>
+  <animateTransform attributeName="transform" type="rotate" values="0 50 50;120 50 50" keyTimes="0;1" dur="0.23148148148148145s" repeatCount="indefinite"></animateTransform><circle cx="50" cy="50" r="27" stroke="#7187f5" fill="none" stroke-dasharray="28.274333882308138 169.64600329384882" stroke-linecap="round" stroke-width="10" transform="rotate(0 50 50)">
+  <animate attributeName="stroke" values="#7187f5;#af71f5" keyTimes="0;1" dur="0.23148148148148145s" repeatCount="indefinite"></animate>
+</circle><circle cx="50" cy="50" r="27" stroke="#af71f5" fill="none" stroke-dasharray="28.274333882308138 169.64600329384882" stroke-linecap="round" stroke-width="10" transform="rotate(120 50 50)">
+  <animate attributeName="stroke" values="#af71f5;#6ae5f8" keyTimes="0;1" dur="0.23148148148148145s" repeatCount="indefinite"></animate>
+</circle><circle cx="50" cy="50" r="27" stroke="#6ae5f8" fill="none" stroke-dasharray="28.274333882308138 169.64600329384882" stroke-linecap="round" stroke-width="10" transform="rotate(240 50 50)">
+  <animate attributeName="stroke" values="#6ae5f8;#7187f5" keyTimes="0;1" dur="0.23148148148148145s" repeatCount="indefinite"></animate>
+</circle></g>
 </svg>
