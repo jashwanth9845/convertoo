@@ -1,0 +1,61 @@
+.toggle {
+    position: relative;
+    display: inline-block;
+    width: 57px;
+    height: 26px;
+    padding: 1px;
+  }
+  
+  .toggle input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #3a5fc7;
+    border-radius: 50px;
+    transition: background-color .4s;
+    display: flex;
+    align-items: center;
+  }
+  
+  .slider i {
+    font-size: 17px;
+    color: #ffffff;
+    transition: transform 0.4s, opacity 0.4s, left 0.4s;
+    position: absolute;
+    top: 50%;
+    left: 14px;
+    transform: translate(-50%, -50%);
+  }
+  
+  input:checked + .slider {
+    background-color: #222;
+  }
+  
+  input:checked + .slider .fa-sun {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(90deg);
+    left: calc(100% - 26px); /* slide the sun to the right */
+  }
+  
+  input:checked + .slider .fa-moon {
+    opacity: 1;
+    color: #d3d3d3;
+    transform: translate(-50%, -50%) rotate(0deg);
+    left: calc(50% + 13px);
+  }
+  
+  .slider .fa-moon {
+    opacity: 0;
+    color: #fff;
+    left: calc(50% - 13px);
+  }
+  

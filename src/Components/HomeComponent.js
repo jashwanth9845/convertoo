@@ -1,4 +1,4 @@
-import { memo, useMemo, useRef, useState ,useCallback,useEffect} from 'react';
+import { memo, useMemo, useRef, useState, useCallback, useEffect } from "react";
 import { Uploader } from "../Helper/Uploader";
 import styles from "../CSS/home.module.css";
 const options = [
@@ -7,10 +7,10 @@ const options = [
   { text: "JPG" },
   { text: "WEBP" },
 ];
+
 export default function HomeComponent() {
   const [files, setfiles] = useState();
   const [Type, setType] = useState();
-
   useEffect(() => {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
@@ -32,7 +32,7 @@ export default function HomeComponent() {
     const canvas = document.querySelector("canvas");
     if (window.innerWidth <= 600 && canvas) {
       canvas.style.width = "300px";
-    } else if(canvas) {
+    } else if (canvas) {
       canvas.style.width = "100%";
     }
   }, []);
@@ -43,12 +43,12 @@ export default function HomeComponent() {
   };
   const showImg = async () => {
     const canvasList = [];
-  
+
     if (typeof files === "string") {
       const img = new Image();
       img.crossOrigin = "anonymous";
       img.src = files;
-  
+
       await new Promise((resolve, reject) => {
         img.onload = () => {
           const canvas = document.createElement("canvas");
@@ -64,32 +64,31 @@ export default function HomeComponent() {
           canvasList.push(canvas);
           resolve();
         };
-  
+
         img.onerror = reject;
       });
     } else {
-      const promises = Array.from(files).map((file,i) => {
+      const promises = Array.from(files).map((file, i) => {
         return new Promise((resolve, reject) => {
           const img = new Image();
           img.src = URL.createObjectURL(file);
-  
+
           img.onload = () => {
             const canvas = document.createElement("canvas");
             canvas.width = img.width;
             canvas.height = img.height;
             const ctx = canvas.getContext("2d");
             ctx.drawImage(img, 0, 0, img.width, img.height);
-            canvas.style.fontFamily = 'image'+i;
+            canvas.style.fontFamily = "image" + i;
             if (document.documentElement.clientWidth <= 500) {
               canvas.style.width = "300px";
-              
             } else {
               canvas.style.width = "100%";
             }
             canvasList.push(canvas);
             resolve();
           };
-  
+
           img.onerror = () => {
             URL.revokeObjectURL(img.src);
             console.log("Cannot load image");
@@ -97,15 +96,15 @@ export default function HomeComponent() {
           };
         });
       });
-  
+
       await Promise.all(promises);
     }
-  
+
     const canvasContainer = document.getElementById("canvasContainer");
     canvasContainer.style.minHeight = "360px";
-    canvasContainer.innerHTML = '';
+    canvasContainer.innerHTML = "";
     document.querySelector("#headingText > h3").style.fontSize = "2rem";
-  
+
     canvasList.forEach((canvas) => {
       const div = document.createElement("div");
       div.style.position = "relative";
@@ -116,34 +115,33 @@ export default function HomeComponent() {
       div.style.justifyContent = "center";
       canvas.style.height = "auto";
       div.appendChild(canvas);
-    
+
       const showDownload = document.createElement("p");
-      showDownload.id = canvas.style.fontFamily; 
+      showDownload.id = canvas.style.fontFamily;
       showDownload.classList.add(styles.downloadshow);
       const img = document.createElement("img");
       img.src = "./Images/downloader.svg";
       showDownload.appendChild(img);
       div.appendChild(showDownload);
-    
+
       canvasContainer.appendChild(div);
     });
-    
-    
+
     document.getElementById("bg_image").style.display = "none";
     document.getElementById("options").style.display = "flex";
-    document.getElementById("showSlider").style.display = "block";
+    document.getElementById("showSlider").style.display =
+      files && files.length > 1 ? "block" : "none";
     document.getElementById("showLoading").style.display = "none";
-
   };
-  
+
   const convertTo = () => {
     for (let i = 0; i < files.length; i++) {
-      document.getElementById("image"+i).style.display = "flex";
+      document.getElementById("image" + i).style.display = "flex";
       const file = files[i];
       const name = file.name;
       const mime_type = `image/${Type}`;
       const quality = qualityRate(file.size);
-  
+
       const img = new Image();
       img.crossOrigin = "anonymous";
       img.onload = function () {
@@ -155,9 +153,9 @@ export default function HomeComponent() {
         const dataURL = canvas.toDataURL(mime_type, quality);
         const link = document.createElement("a");
         link.href = dataURL;
-        link.download = `ConverToo_${name.replace("."+Type,'')}.${Type}`;
+        link.download = `ConverToo_${name.replace("." + Type, "")}.${Type}`;
         link.click();
-        document.getElementById("image"+i).style.display = "none";
+        document.getElementById("image" + i).style.display = "none";
         setType("");
       };
       img.onerror = function () {
@@ -167,8 +165,7 @@ export default function HomeComponent() {
       img.src = blobURL;
     }
   };
-  
-  
+
   const qualityRate = (fileSize) => {
     let QUALITY = 0.5;
 
@@ -235,22 +232,25 @@ export default function HomeComponent() {
         <div className={styles.headingDiv} id="headingText">
           <h3>Upload an image for Type conversion</h3>
         </div>
-        <div className={styles.InnerDiv} style={{position:"relative"}}>
-        <p id="showLoading"  className={styles.showLoading}>
-                  <img src="./Images/loader.svg" />
-                </p>
+        <div
+          className={`${styles.InnerDiv} myBackground`}
+          style={{ position: "relative" }}
+        >
+          <p id="showLoading" className={styles.showLoading}>
+            <img src="./Images/loader.svg" className="myBackground" />
+          </p>
           <div className={styles.Mainaction}>
             <div className={styles.action}>
               <Uploader
                 accept={"image/*"}
                 multiple={true}
                 dropper={true}
-                text={"Upload Image"}
+                text={"Upload Images"}
                 getImage={getImage}
-                // color={colourNameToHex("red")}
-                // bgColor={colourNameToHex("orange")}
               />
-              <div className={styles.dropText}>or drop a file</div>
+              <div className={styles.dropText} id="dropperText">
+                or drop a file
+              </div>
               <div className={styles.dropdownOptions} id="options">
                 <p style={{ margin: "0px" }}>Convertion Types</p>
                 <div>
@@ -270,16 +270,17 @@ export default function HomeComponent() {
                 </div>
               </div>
             </div>
-              <div className={styles.viewSlider} id="showSlider">
-                <Slider fileSize={files}/>
-              </div>
-            <div style={{position:"relative"}}>
+            <div className={styles.viewSlider} id="showSlider">
+              <Slider fileSize={files} />
+            </div>
+            <div style={{ position: "relative" }}>
               <div className={styles.bg_image} id="bg_image">
                 <img src="./Images/drop_bg.png" />
               </div>
-              <div className={styles.canvasContainer} id="canvasContainer">
-              
-              </div>
+              <div
+                className={styles.canvasContainer}
+                id="canvasContainer"
+              ></div>
             </div>
           </div>
         </div>
@@ -288,12 +289,10 @@ export default function HomeComponent() {
   );
 }
 
-
-
-export const Slider = memo(({fileSize}) => {
+export const Slider = memo(({ fileSize }) => {
   const valueDisplay = useRef();
   const myRange = useRef();
-  const rangeValue = fileSize? fileSize.length : 20 ;
+  const rangeValue = fileSize ? fileSize.length : 20;
   const [defaultValue, setDefaultValue] = useState(null);
 
   const handleViewBy = (e) => {
@@ -301,28 +300,30 @@ export const Slider = memo(({fileSize}) => {
     const min = e.target.min;
     const max = e.target.max;
     valueDisplay.current.innerHTML = `view By: ${value}`;
-    const
-			newValue = Number( (value - min) * 80 / (max - min) ),
-      newPosition = 10 - (newValue * 0.2);
+    const newValue = Number(((value - min) * 80) / (max - min)),
+      newPosition = 10 - newValue * 0.2;
     valueDisplay.current.style.left = `calc(${newValue}% + (${newPosition}px))`;
-    const elements = document.querySelectorAll('.canvasDiv');
+    const elements = document.querySelectorAll(".canvasDiv");
     if (elements.length) {
       elements.forEach((elem) => {
         const calval = `calc(100% / ${value} - 40px)`;
         elem.style.width = calval;
-        elem.style.height = 'auto';
-        elem.style.margin = '0 20px';
+        elem.style.height = "auto";
+        elem.style.margin = "0 20px";
         elem.style.flexBasis = calval;
       });
     }
     setDefaultValue(value);
   };
 
-  const memoizedDefaultValue = useMemo(() => defaultValue ?? 'auto', [defaultValue]);
+  const memoizedDefaultValue = useMemo(
+    () => defaultValue ?? "auto",
+    [defaultValue]
+  );
 
   return (
     <div className={styles.sliderContainer}>
-      <label className={styles.rangerLabel} ref={valueDisplay}>
+      <label className={`${styles.rangerLabel} myBackground mycolor`} ref={valueDisplay}>
         view By: {memoizedDefaultValue}
       </label>
       <input
@@ -337,4 +338,3 @@ export const Slider = memo(({fileSize}) => {
     </div>
   );
 });
-

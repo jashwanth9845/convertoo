@@ -8,6 +8,14 @@
   background-color: white;
   box-shadow: rgb(0 0 0 / 5%) 0px 1px 5px 0px;
 }
+
+.innercontainer {
+  display: flex;
+  justify-content: space-between;
+  width: inherit;
+  align-items: center;
+}
+
 .leftDiv {
   display: flex;
   justify-content: center;
@@ -15,15 +23,26 @@
   margin: 5px;
   padding: 5px;
 }
-.leftDiv > p {
+
+.leftDiv>p {
   margin: 0px 5px;
   font-size: 40px;
   font-weight: bold;
   color: #3754bbf0;
   letter-spacing: 1px;
 }
-.leftDiv > img {
+
+.leftDiv>img {
   width: 50px;
   height: 50px;
   object-fit: contain;
 }
+
+.rightDiv {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  align-items: center;
+  gap: 2%;
+}
+

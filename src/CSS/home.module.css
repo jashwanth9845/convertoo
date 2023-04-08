@@ -4,7 +4,7 @@
   flex-direction: column;
   /* justify-content: center; */
   align-items: center;
-  transition:all 0.3s cubic-bezier(0.31, -0.03, 0.89, 1.3);
+  transition:all 0.4s;
 
 }
 .InnerDiv {
@@ -22,7 +22,7 @@
   font-size: 1.2em;
   margin: 0 4rem;
   box-shadow: rgb(0 0 0 / 15%) 0px 5px 15px 0px;
-  transition:all 0.3s cubic-bezier(0.31, -0.03, 0.89, 1.3);
+  transition:all 0.4s;
 
 }
 .headingDiv {
@@ -30,7 +30,7 @@
   justify-content: center;
   align-items: center;
   margin: 2% 0;
-  transition:all 0.3s cubic-bezier(0.31, -0.03, 0.89, 1.3);
+  transition:all 0.4s;
 
 }
 .headingDiv > h3 {
@@ -39,14 +39,14 @@
   width: 60%;
   margin: 0px;
   color: #343b48;
-  transition:all 0.3s cubic-bezier(0.31, -0.03, 0.89, 1.3);
+  transition:all 0.4s;
 
 }
 .dropText {
   color: #343b48;
   font-size: 1.2em;
   margin: 3% 0;
-  transition:all 0.3s cubic-bezier(0.31, -0.03, 0.89, 1.3);
+  transition:all 0.4s;
 
 }
 .Mainaction {
@@ -56,7 +56,7 @@
   align-items: center;
   width: -webkit-fill-available;
   margin: 10px;
-  transition:all 0.3s cubic-bezier(0.31, -0.03, 0.89, 1.3);
+  transition:all 0.4s;
 
 }
 .action {
@@ -65,13 +65,13 @@
   align-items: center;
   width: max-content;
   margin: 0 1rem;
-  transition:all 0.3s cubic-bezier(0.31, -0.03, 0.89, 1.3);
+  transition:all 0.4s;
 
 }
 .bg_image {
   display: flex;
   width: 100%;
-  transition:all 0.3s cubic-bezier(0.31, -0.03, 0.89, 1.3);
+  transition:all 0.4s;
 
 }
 .bg_image > img {
@@ -79,7 +79,7 @@
   height: auto;
   object-fit: contain;
   max-height: 350px;
-  transition:all 0.3s cubic-bezier(0.31, -0.03, 0.89, 1.3);
+  transition:all 0.4s;
 
 }
 .dropdownOptions {
@@ -91,7 +91,7 @@
   flex-wrap: nowrap;
   width: 100%;
   margin: 15px 0px;
-  transition:all 0.3s cubic-bezier(0.31, -0.03, 0.89, 1.3);
+  transition:all 0.4s;
 
 }
 .showLoading{
@@ -100,13 +100,22 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 100%;
-  top: 0;
+  height: 100vh;
+  top: -20px;
   left: 0;
   border-radius: 5px;
   z-index: 999;
   background:rgb(255 255 255 / 38%);
   transition: all 0.3s cubic-bezier(0.31, -0.03, 0.89, 1.3);
+}
+.showLoading > img {
+  height: 100px;
+  width: auto;
+  object-fit: contain;
+  border-radius: 14px;
+  /* background: #36363c; */
+  background: white;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 .downloadshow {
   position: absolute;
@@ -121,7 +130,7 @@
     left: 0;
     right: 0;
     border-radius: 5px;
-  transition:all 0.3s cubic-bezier(0.31, -0.03, 0.89, 1.3);
+  transition:all 0.4s;
 
 }
 .downloadshow > img {
@@ -140,7 +149,7 @@
   background-color: #3754bbf0;
   padding: 0px;
   border-radius: 5px;
-  transition:all 0.3s cubic-bezier(0.31, -0.03, 0.89, 1.3);
+  transition:all 0.4s;
 
 }
 
@@ -149,12 +158,12 @@
   padding: 10px;
   border-right: 1px solid rgb(113, 135, 245);
   cursor: pointer;
-  transition:all 0.3s cubic-bezier(0.31, -0.03, 0.89, 1.3);
+  transition:all 0.4s;
 
 }
 .dropdownOptions > div > p:last-child {
   border-right: none;
-  transition:all 0.3s cubic-bezier(0.31, -0.03, 0.89, 1.3);
+  transition:all 0.4s;
 
 }
 .dropdownOptions > div > p:hover {
@@ -175,7 +184,7 @@ canvas {
 }
 .canvasContainer{
   position: relative;
-  max-height: 360px;
+  max-height:calc(100vh - 300px);
   overflow-y: auto;
   display: flex;
   justify-content: center;
@@ -191,7 +200,7 @@ position: absolute;
 top: 20px;
 left: 10px;
 width: 80%;
-transition:all 0.3s cubic-bezier(0.31, -0.03, 0.89, 1.3);
+transition:all 0.4s;
 
 }
 .sliderContainer{
@@ -200,7 +209,7 @@ transition:all 0.3s cubic-bezier(0.31, -0.03, 0.89, 1.3);
   width: inherit;
   justify-content: flex-start;
   align-items: center;
-  transition:all 0.3s cubic-bezier(0.31, -0.03, 0.89, 1.3);
+  transition:all 0.4s;
 
 }
 
@@ -216,7 +225,7 @@ transition:all 0.3s cubic-bezier(0.31, -0.03, 0.89, 1.3);
   outline: none;
   position: relative;
   z-index: 1;
-  transition:all 0.3s cubic-bezier(0.31, -0.03, 0.89, 1.3);
+  transition:all 0.4s;
 }
 
 .ranger::-webkit-slider-thumb {
@@ -235,7 +244,7 @@ transition:all 0.3s cubic-bezier(0.31, -0.03, 0.89, 1.3);
 }
 .ranger::-webkit-slider-thumb:hover{
     border:4px solid lightgray;
-    transition:all 0.3s cubic-bezier(0.31, -0.03, 0.89, 1.3);
+    transition:all 0.4s;
 
 }
 .rangerLabel {
@@ -251,7 +260,7 @@ transition:all 0.3s cubic-bezier(0.31, -0.03, 0.89, 1.3);
   font-weight: bold;
   text-align: center;
   z-index: 2;
-  transition:all 0.3s cubic-bezier(0.31, -0.03, 0.89, 1.3);
+  transition:all 0.4s;
 
 }
 

@@ -1,0 +1,207 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: all 0.4s;
+}
+.help_newDiv{
+    position: relative;
+    z-index: 1;
+}
+.help_newInnerDiv {
+    position: relative;
+    width: 35px;
+    height: 35px;
+    background-color: rgba(72, 94, 215, 0.511);
+    /* original background color */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    font-size: 25px;
+    color: #3a5fc7;
+    cursor: pointer;
+}
+
+
+
+@keyframes grow {
+    0% {
+        width: 0;
+        height: 0;
+        opacity: 1;
+        /* the pseudo-element starts fully transparent */
+    }
+
+    100% {
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        /* the pseudo-element becomes fully opaque */
+    }
+}
+.dot{
+position: absolute;
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    background: #2E7D32;
+    top: 0;
+    left: 0;
+}
+.dot:before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    /* position the center of the pseudo-element in the center of the main element */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* adjust the position of the pseudo-element */
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    border: 5px solid #14d61eb0;
+    animation: grow 1s linear infinite;
+}
+.hideDot.dot:before{
+    display: none;
+}
+.dropNewDiv{
+    position: absolute;
+    top: 40px;
+    right: -350px;
+    width: 300px;
+    background: white;
+    box-shadow: rgb(0 0 0 / 15%) 0px 5px 15px 0px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    padding:50% 40%;
+}
+
+.dropNewDiv .items {
+position: relative;
+width: 100%;
+background: #a1acea;
+margin: 8px 0;
+color: #3a5fc7;
+padding: 4%;
+font-size: 20px;
+border-radius: 5px;
+}
+.closeBadge{
+    position: absolute;
+    top: -5px;
+    right: -6px;
+    height: 25px;
+    width: 25px;
+    background: #3a5fc7;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+    padding-bottom: 1px;
+}
+.items > p {
+    color: rgb(52, 59, 72);
+    font-size: 12px;
+    margin: 5px;
+    display: flex;
+    justify-content: flex-end; 
+    align-items: center;
+}
+.items>p > span {
+    width: 5px;
+    margin: 5px;
+    height: 5px;
+    background-color: rgb(52, 59, 72);
+    border-radius: 50%;
+}
+.noNotificats{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #a2adeb8a;
+    border-radius: 5px;
+    margin: 10px 0;
+    padding: 5%;
+}
+.oldNotificats{
+    font-size: 12px;
+    text-decoration: underline;
+    cursor: pointer;
+}
+.notificationHead{
+    width: 100%;
+}
+.bg_div{
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+.feedback{
+    border: none;
+    margin: 10px 0 ;
+    width: 100%;
+    height: 40px;
+    background-color: #a2adeb8a;
+    border-radius: 5px;
+    padding: 5px;
+    color: black;
+    resize: none;
+}
+.feedback:focus{
+    outline: none;
+}
+.feedbackButtons{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+
+    gap: 1rem;
+}
+.feedbackButtons > button{
+        background-color: #3a5fc7;
+            width: 100%;
+            min-width: 100px;
+            border: 1px solid #a1acea;
+            border-radius: 5px;
+            height: 25px;
+            color: white;
+            cursor: pointer;
+}
+.feedbackButtons>button:disabled{
+    background-color: #787d8b;
+    pointer-events: none;
+    color: darkgray;
+}
+::-webkit-input-placeholder {
+    /* Chrome/Opera/Safari */
+    color: black;
+}
+
+::-moz-placeholder {
+    /* Firefox 19+ */
+    color: black;
+}
+
+:-ms-input-placeholder {
+    /* IE 10+ */
+    color: black;
+}
+
+:-moz-placeholder {
+    /* Firefox 18- */
+    color: black;
+}

@@ -128,7 +128,7 @@ export const Uploader = (req) => {
             accept={accept ? accept : "image/*"}
             onChange={(e) => getImage(e.target.files)}
           />
-          <div style={uploaderButton}>{text ? text : "Upload file"}</div>
+          <div style={uploaderButton} className="mycolor">{text ? text : "Upload file"}</div>
         </label>
         <input
           type={"text"}
@@ -204,6 +204,7 @@ export const Uploader = (req) => {
       >
         <div
           id="openDropper1"
+          className="mycolor"
           style={dropperList}
           onClick={(e) => {
             handleUrl(e);
