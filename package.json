@@ -15,7 +15,6 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "predeploy": "npm run build",
     "deploy": "npm run build && gh-pages -d build",
     "start": "react-scripts start",
     "build": "rimraf ./build && react-scripts build && rimraf ./build/**/*.map",
