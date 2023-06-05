@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import styles from "../CSS/help_new.module.css";
-export default function Help_New() {
+export default function Help_New({ theme }) {
   const [style, setStyle] = useState(-350);
   const [notificationLen, setNotificationsLen] = useState(0);
 
@@ -19,6 +19,7 @@ export default function Help_New() {
       </div>
       <DropDiv
         style={style}
+        theme={theme}
         setStyle={setStyle}
         setNotificationsLen={setNotificationsLen}
       />
@@ -26,7 +27,7 @@ export default function Help_New() {
   );
 }
 
-const DropDiv = ({ style, setStyle, setNotificationsLen }) => {
+const DropDiv = ({ theme, style, setStyle, setNotificationsLen }) => {
   const ManualNotifications = [
     {
       id: "notification1",
@@ -92,6 +93,9 @@ const DropDiv = ({ style, setStyle, setNotificationsLen }) => {
               There are no new notifications.
             </p>
             <p
+              style={{
+                color: theme == "LightMode" ? "black" : "rgb(222, 229, 255)",
+              }}
               className={`${styles.oldNotificats} mycolor`}
               onClick={() => setNotifications(ManualNotifications)}
             >

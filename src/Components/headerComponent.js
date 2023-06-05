@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "../CSS/head.module.css";
 import { AddStyles } from "../Helper/AddStyles";
 import ToggleSwitch from "./ToggleSwitchComponent";
@@ -18,7 +18,11 @@ const ToggleStyles = {
   darkMode,
 };
 export default function HeaderComponent() {
-  const getToggled = (checkThis) => {
+  const [theme, setTheme] = useState();
+  const getToggled = () => {
+    const mytheme = localStorage.getItem("theme");
+    console.log("mytheme: ", mytheme);
+    setTheme(mytheme);
     AddStyles({
       selector: [
         {
@@ -32,7 +36,7 @@ export default function HeaderComponent() {
         { body: "mainBackground", mytext: "color", mydata: "background" },
       ],
       styleObject: ToggleStyles,
-      theme: checkThis,
+      theme: mytheme,
     });
   };
   return (
@@ -44,7 +48,7 @@ export default function HeaderComponent() {
         </div>
         <div className={styles.rightDiv}>
           <ToggleSwitch getToggled={getToggled} />
-          <Help_New />
+          <Help_New theme={theme} />
         </div>
       </div>
     </div>

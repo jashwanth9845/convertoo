@@ -15,7 +15,7 @@ export const Uploader = (req) => {
     padding: "15px 10px",
     fontSize: "1.2em",
     borderRadius: "4px",
-    whiteSpace:"nowrap",
+    whiteSpace: "nowrap",
     cursor: "Pointer",
   };
   const uploaderButtonImg = {
@@ -128,7 +128,9 @@ export const Uploader = (req) => {
             accept={accept ? accept : "image/*"}
             onChange={(e) => getImage(e.target.files)}
           />
-          <div style={uploaderButton} className="mycolor">{text ? text : "Upload file"}</div>
+          <div style={uploaderButton} className="mycolor">
+            {text ? text : "Upload file"}
+          </div>
         </label>
         <input
           type={"text"}
@@ -200,6 +202,7 @@ export const Uploader = (req) => {
           boxShadow: `${
             bgColor ? bgColor + "8f" : "#3a5fc78f"
           } 0px 5px 10px 0px`,
+          transition: "none",
         }}
       >
         <div
