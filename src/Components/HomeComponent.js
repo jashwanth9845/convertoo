@@ -1,6 +1,7 @@
 import { memo, useMemo, useRef, useState, useCallback, useEffect } from "react";
 import { Uploader } from "../Helper/Uploader";
 import styles from "../CSS/home.module.css";
+import { getFileNameWithoutExtention } from "../Helper/helper";
 const options = [
   { text: "GIF" },
   { text: "PNG" },
@@ -153,7 +154,7 @@ export default function HomeComponent() {
         const dataURL = canvas.toDataURL(mime_type, quality);
         const link = document.createElement("a");
         link.href = dataURL;
-        link.download = `ConverToo_${name.replace("." + Type, "")}.${Type}`;
+        link.download = `${getFileNameWithoutExtention(name)}.${Type}`;
         link.click();
         document.getElementById("image" + i).style.display = "none";
         setType("");
@@ -196,7 +197,7 @@ export default function HomeComponent() {
   return (
     <>
       <div
-        id="showdraging"
+        id='showdraging'
         onDrop={(e) => {
           drop(e);
           document.getElementById("showdraging").style.display = "none";
@@ -229,15 +230,15 @@ export default function HomeComponent() {
           allowDrop(e);
         }}
       >
-        <div className={styles.headingDiv} id="headingText">
+        <div className={styles.headingDiv} id='headingText'>
           <h3>Upload an image for Type conversion</h3>
         </div>
         <div
           className={`${styles.InnerDiv} myBackground`}
           style={{ position: "relative" }}
         >
-          <p id="showLoading" className={styles.showLoading}>
-            <img src="./Images/loader.svg" className="myBackground" />
+          <p id='showLoading' className={styles.showLoading}>
+            <img src='./Images/loader.svg' className='myBackground' />
           </p>
           <div className={styles.Mainaction}>
             <div className={styles.action}>
@@ -248,10 +249,10 @@ export default function HomeComponent() {
                 text={"Upload Images"}
                 getImage={getImage}
               />
-              <div className={styles.dropText} id="dropperText">
+              <div className={styles.dropText} id='dropperText'>
                 or drop a file
               </div>
-              <div className={styles.dropdownOptions} id="options">
+              <div className={styles.dropdownOptions} id='options'>
                 <p style={{ margin: "0px" }}>Convertion Types</p>
                 <div>
                   {options.map((e, i) => {
@@ -270,16 +271,16 @@ export default function HomeComponent() {
                 </div>
               </div>
             </div>
-            <div className={styles.viewSlider} id="showSlider">
+            <div className={styles.viewSlider} id='showSlider'>
               <Slider fileSize={files} />
             </div>
             <div style={{ position: "relative" }}>
-              <div className={styles.bg_image} id="bg_image">
-                <img src="./Images/drop_bg.png" />
+              <div className={styles.bg_image} id='bg_image'>
+                <img src='./Images/drop_bg.png' />
               </div>
               <div
                 className={styles.canvasContainer}
-                id="canvasContainer"
+                id='canvasContainer'
               ></div>
             </div>
           </div>
@@ -323,12 +324,15 @@ export const Slider = memo(({ fileSize }) => {
 
   return (
     <div className={styles.sliderContainer}>
-      <label className={`${styles.rangerLabel} myBackground mycolor`} ref={valueDisplay}>
+      <label
+        className={`${styles.rangerLabel} myBackground mycolor`}
+        ref={valueDisplay}
+      >
         view By: {memoizedDefaultValue}
       </label>
       <input
         className={styles.ranger}
-        type="range"
+        type='range'
         min={1}
         max={rangeValue}
         ref={myRange}
