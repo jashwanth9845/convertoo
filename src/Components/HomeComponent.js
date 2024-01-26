@@ -3,7 +3,6 @@ import { Uploader } from '../Helper/Uploader';
 import styles from '../CSS/home.module.css';
 import pica from 'pica';
 import { getFileNameWithoutExtention } from '../Helper/helper';
-import pica from 'pica';
 const options = [{ text: 'GIF' }, { text: 'PNG' }, { text: 'JPG' }, { text: 'WEBP' }];
 
 export default function HomeComponent() {
