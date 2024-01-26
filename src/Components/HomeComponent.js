@@ -296,6 +296,8 @@ export default function HomeComponent() {
                 accept={'image/*'}
                 multiple={true}
                 dropper={true}
+                bgColor={'#d4dbf7'}
+                color={'#293d8a'}
                 text={'Upload Images'}
                 getImage={getImage}
               />
@@ -375,6 +377,7 @@ export const Slider = memo(({ fileSize }) => {
         className={styles.ranger}
         type='range'
         min={1}
+        name={'slider range'}
         max={rangeValue}
         ref={myRange}
         value={defaultValue ?? 0}

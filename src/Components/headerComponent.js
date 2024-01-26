@@ -5,11 +5,13 @@ import ToggleSwitch from './ToggleSwitchComponent';
 import Help_New from './Help_NewComponent';
 const darkMode = {
   color: '#dee5ff',
+  color1: '343b48',
   background: '#36363c',
   mainBackground: '#212121',
 };
 const LightMode = {
   color: '#343b48',
+  color1: '#343b48',
   background: 'white',
   mainBackground: 'rgba(172, 219, 250, 0.1)',
 };
@@ -22,6 +24,22 @@ export default function HeaderComponent() {
   const getToggled = () => {
     const mytheme = localStorage.getItem('theme');
     setTheme(mytheme);
+    AddStyles({
+      selector: [
+        {
+          body: 'body',
+          mytext: 'h3,#dropperText,.mycolor',
+          mydata: '.myBackground',
+          mycolorLabel: '.mycolor1',
+        },
+      ],
+      style: [{ body: 'background', mytext: 'color', mydata: 'background', mycolorLabel: 'color' }],
+      applyTo: [
+        { body: 'mainBackground', mytext: 'color', mydata: 'background', mycolorLabel: 'color1' },
+      ],
+      styleObject: ToggleStyles,
+      theme: mytheme,
+    });
     AddStyles({
       selector: [
         {

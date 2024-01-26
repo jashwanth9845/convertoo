@@ -124,7 +124,7 @@ export const Uploader = (req) => {
             accept={accept ? accept : 'image/*'}
             onChange={(e) => getImage(e.target.files)}
           />
-          <div style={uploaderButton} className='mycolor'>
+          <div style={uploaderButton} className='mycolor1'>
             {text ? text : 'Upload file'}
           </div>
         </label>

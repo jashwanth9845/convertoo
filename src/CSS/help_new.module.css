@@ -48,7 +48,7 @@
   left: 0;
 }
 .dot:before {
-  content: "";
+  content: '';
   position: absolute;
   top: 50%;
   /* position the center of the pseudo-element in the center of the main element */
@@ -80,14 +80,14 @@
 }
 
 .dropNewDiv .items {
+  background: #d4dbf7;
+  border-radius: 5px;
+  color: #293d8a;
+  font-size: 20px;
+  margin: 8px 0;
+  padding: 4%;
   position: relative;
   width: 100%;
-  background: #a1acea;
-  margin: 8px 0;
-  color: #3a5fc7;
-  padding: 4%;
-  font-size: 20px;
-  border-radius: 5px;
 }
 .closeBadge {
   position: absolute;

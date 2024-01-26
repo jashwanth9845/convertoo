@@ -15,8 +15,14 @@ export default function ToggleSwitch({ getToggled }) {
     }
   }, [isToggled]);
   return (
-    <label className='toggle'>
-      <input type='checkbox' id='toggle' checked={isToggled} onChange={handleToggle} />
+    <label className='toggle' htmlFor='toggle'>
+      <input
+        type='checkbox'
+        id='toggle'
+        checked={isToggled}
+        onChange={handleToggle}
+        aria-label='toggle'
+      />
       <span className='slider'>
         <svg
           className='sun'
