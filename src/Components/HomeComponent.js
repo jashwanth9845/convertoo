@@ -2,7 +2,8 @@ import { memo, useMemo, useRef, useState, useCallback, useEffect } from 'react';
 import { Uploader } from '../Helper/Uploader';
 import styles from '../CSS/home.module.css';
 import pica from 'pica';
-import { getFileNameWithoutExtention } from '../Helper/utlis';
+import { getFileNameWithoutExtention } from '../Helper/helper';
+import pica from 'pica';
 const options = [{ text: 'GIF' }, { text: 'PNG' }, { text: 'JPG' }, { text: 'WEBP' }];
 
 export default function HomeComponent() {
@@ -282,7 +283,13 @@ export default function HomeComponent() {
         </div>
         <div className={`${styles.InnerDiv} myBackground`} style={{ position: 'relative' }}>
           <p id='showLoading' className={styles.showLoading}>
-            <img src='./Images/loader.svg' className='myBackground' alt='loading Icon' />
+            <img
+              src='./Images/loader.svg'
+              className='myBackground'
+              alt='loading Icon'
+              width='640'
+              height='340'
+            />
           </p>
           <div className={styles.Mainaction}>
             <div className={styles.action}>
